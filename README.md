@@ -12,6 +12,6 @@
 
 Szybki fun mocktest wyjaśniania algorytmu na AiZO
 
-Cel: Po wykryciu szumu przez program opisz algorytm bez powiedzenia słowa 'jakby'
+Cel: Po procesie wykrywania szumu przez program opisz algorytm bez powiedzenia słowa 'jakby'
 
 Przy instalacji pamietać o zainstalowaniu rzeczy z requirements
