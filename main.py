@@ -12,16 +12,13 @@ def play_buzzer():
         print("Brak dzwieku, error:", e)
 
 def listen_and_recognize(mic):
-    r = sr.Recognizer()
     with mic as source:
-        print("Kalibracja Mikrofonu (żeby usunac szum). Poczekaj...")
-        r.adjust_for_ambient_noise(source, duration=3)  # Increase duration if needed
         print("Nasłuchuje...")
         audio = r.listen(source)
 
     try:
         recognized_text = r.recognize_google(audio, language="pl-PL")
-        print("You said:", recognized_text)
+        print("Powiedziałeś/aś:", recognized_text)
         if "jakby" in recognized_text.lower():
             print("Wykryto 'jakby' w zdaniu!")
             play_buzzer()
@@ -32,7 +29,12 @@ def listen_and_recognize(mic):
 
 if __name__ == "__main__":
     mic = sr.Microphone()
-    print("Wcisnij CTRL+C zeby wyjsc")
+    with mic as source:
+        print("Kalibracja Mikrofonu (żeby usunac szum) nic nie mów. Poczekaj...")
+        r = sr.Recognizer()
+        r.adjust_for_ambient_noise(mic,duration=5)
+        print("Wcisnij CTRL+C żeby wyjść")
+
     try:
         while True:
             listen_and_recognize(mic)
